@@ -12,22 +12,10 @@ import {
 
 import axios from "axios";
 
-const AI = () => {
+const SentimentalAnalysis = () => {
   const [data, setData] = useState([]);
   const [text, setText] = useState("");
-
-  // const emoji = () => {
-  //   if (data.label === "pos") {
-  //     return <Image source={require('../images/happy.png')} style={{ width: '100%'}} />;
-  //   } else if (data.label === "neg") {
-  //     return <Image source={require('../images/Sad.png')} style={{ width: '100%'}} />;
-  //   } else if (data.label === "neu") {
-  //     return <Image source={require('../images/ANGRY.png')} style={{ width: '100%'}} />;
-  //   } else {
-  //     return <Image source={require('../images/477848.jpg')} style={{ width: '100%'}} />;
-  //   }
-  // };
-
+  
   const SenAnalysis = async () => {
     const apiKey = "hNRzg4CoMzoXlXCvo6wvWOnOo01W1Xs7";
     const options = {
@@ -39,7 +27,6 @@ const AI = () => {
         apikey: apiKey,
       },
     };
-
     if (text.length > 8) {
       await axios
         .request(options)
@@ -69,7 +56,6 @@ const AI = () => {
 
       <Text>{data.sentiment}</Text>
 
-      {/* <Button title="Submit" onPress={SenAnalysis} color=}/>  */}
       <TouchableOpacity onPress={SenAnalysis} style={styles.touch}>
         <Text
           style={{
@@ -110,6 +96,8 @@ const AI = () => {
     </View>
   );
 };
+
+export default SentimentalAnalysis;
 
 const styles = StyleSheet.create({
   container: {
@@ -158,4 +146,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AI;

@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-import AI from './src/components/AI';
+import SentimentalAnalysis from './src/components/SentimentalAnalysis';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sentimental Analysis </Text>
-      <AI/>
+      <SentimentalAnalysis/>
       <StatusBar style="auto" />
     </View>
   );
