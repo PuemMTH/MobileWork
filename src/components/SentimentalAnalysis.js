@@ -1,10 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, Button, View, Image } from "react-native";
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Button,
+  View,
+  Image,
+} from "react-native";
+
 import axios from "axios";
 
 const SentimentalAnalysis = () => {
   const [data, setData] = useState([]);
   const [text, setText] = useState("");
+
+  const emoji = () => {
+    if (data.label === "pos") {
+      return "   HAPPY :)";
+    } else if (data.label === "neg") {
+      return "   SAD :(";
+    } else if (data.label === "neu") {
+      return "   ANGRY !!";
+    } else {
+      return " MOOD";
+    }
+  };
 
   const SenAnalysis = async () => {
     const apiKey = "hNRzg4CoMzoXlXCvo6wvWOnOo01W1Xs7";
@@ -13,8 +35,11 @@ const SentimentalAnalysis = () => {
       url: `https://api.iapp.co.th/sentimental-analysis/predict?text=${encodeURIComponent(
         text
       )}`,
-      headers: { apikey: apiKey },
+      headers: {
+        apikey: apiKey,
+      },
     };
+
     if (text.length > 8) {
       await axios
         .request(options)
@@ -44,10 +69,11 @@ const SentimentalAnalysis = () => {
 
       <Text>{data.sentiment}</Text>
 
+      {/* <Button title="Submit" onPress={SenAnalysis} color=}/>  */}
       <TouchableOpacity onPress={SenAnalysis} style={styles.touch}>
         <Text
           style={{
-            fontSize: 20,
+            fontSize: 15,
             color: "#fff",
             fontWeight: "bold",
           }}
@@ -55,9 +81,10 @@ const SentimentalAnalysis = () => {
           SUBMIT
         </Text>
       </TouchableOpacity>
-      <View>
+    
+      <View style={styles.imageContainer}>
         {data ? (
-          <View style={styles.imageContainer}>
+          <View>
             <Image
               source={
                 data.label === "pos"
@@ -66,14 +93,15 @@ const SentimentalAnalysis = () => {
                   ? require("../images/Sad.png")
                   : data.label === "neu"
                   ? require("../images/ANGRY.png")
-                  : require("../images/477848.jpg")
+                  : require("../images/ICON2.jpg")
               }
               style={{
-                width: 150,
-                height: 200,
+                width: 250,
+                height: 250,
                 alignSelf: "center",
                 resizeMode: "contain",
-                marginTop: 10,
+                borderWidth: 2.5,
+                borderColor: "#fff",
               }}
             />
           </View>
@@ -81,11 +109,13 @@ const SentimentalAnalysis = () => {
           <Text style={styles.info}>No Data</Text>
         )}
       </View>
+      <View style={styles.imageContainer2}>
+        <Text style={styles.title}>{emoji()}</Text>
+      </View>
+      
     </View>
   );
 };
-
-export default SentimentalAnalysis;
 
 const styles = StyleSheet.create({
   container: {
@@ -93,15 +123,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  imageContainer: {
-    backgroundColor: "#FEFFAC",
-    borderRadius: 10,
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-  },
   title: {
     fontSize: 24,
     margin: 10,
+    alignSelf: "center",
+    marginTop: 15,
   },
   infoContainer: {
     backgroundColor: "#f2d399",
@@ -128,15 +154,30 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   touch: {
-    backgroundColor: "#9376E0",
+    backgroundColor: "#BF4741",
     textAlign: "center",
-    alignItems: "center",
-    borderWidth: 3,
+    alignSelf: "center",
+    borderWidth: 2,
     borderColor: "#fff",
     padding: 10,
     marginBottom: 20,
     marginTop: 1,
     borderRadius: 8,
+    
+  },
+  imageContainer: {
+    backgroundColor: "#FFBFBF",
+    borderRadius: 10,
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+  },
+  imageContainer2: {
+    marginTop: 13,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
   },
 });
 
+export default SentimentalAnalysis;

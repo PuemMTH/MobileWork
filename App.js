@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     margin: 5,
     color : "#000",
-    fontFamily:'Gabriola',
 },
 text: {
   fontFamily: 'Roboto',
