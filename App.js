@@ -7,6 +7,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sentimental Analysis </Text>
+      <Text style={styles.subtitle}>AI วิเคราะห์ความรู้สึกและอารมณ์จากข้อความ</Text>
+      <Text style={styles.subtitle}>😀 HAPPY   😡 ANGRY   😢 SAD</Text>
       <SentimentalAnalysis/>
       <StatusBar style="auto" />
     </View>
@@ -16,7 +18,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E3DFFD',
+    backgroundColor: '#F1CECF',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -24,6 +26,15 @@ const styles = StyleSheet.create({
     fontSize: 30,
     margin: 10,
     fontWeight: "bold",
-  
+    color : "#BF4741",
+},
+  subtitle : {
+    fontSize: 15,
+    margin: 5,
+    color : "#000",
+    fontFamily:'Gabriola',
+},
+text: {
+  fontFamily: 'Roboto',
 },
 });

@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  Alert,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Button,
-  View,
-  Image,
-} from "react-native";
-
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, Button, View, Image } from "react-native";
 import axios from "axios";
 
 const SentimentalAnalysis = () => {
   const [data, setData] = useState([]);
   const [text, setText] = useState("");
-  
+
   const SenAnalysis = async () => {
     const apiKey = "hNRzg4CoMzoXlXCvo6wvWOnOo01W1Xs7";
     const options = {
@@ -23,9 +13,7 @@ const SentimentalAnalysis = () => {
       url: `https://api.iapp.co.th/sentimental-analysis/predict?text=${encodeURIComponent(
         text
       )}`,
-      headers: {
-        apikey: apiKey,
-      },
+      headers: { apikey: apiKey },
     };
     if (text.length > 8) {
       await axios
@@ -69,7 +57,7 @@ const SentimentalAnalysis = () => {
       </TouchableOpacity>
       <View>
         {data ? (
-          <>
+          <View style={styles.imageContainer}>
             <Image
               source={
                 data.label === "pos"
@@ -88,7 +76,7 @@ const SentimentalAnalysis = () => {
                 marginTop: 10,
               }}
             />
-          </>
+          </View>
         ) : (
           <Text style={styles.info}>No Data</Text>
         )}
@@ -104,6 +92,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  imageContainer: {
+    backgroundColor: "#FEFFAC",
+    borderRadius: 10,
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
   },
   title: {
     fontSize: 24,
