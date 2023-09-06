@@ -24,6 +24,9 @@ export default function App() {
         />
         <Stack.Screen
           name="AboutPages"
+          options={{
+            title: "About Us",
+          }}
           component={AboutPages}
         />
       </Stack.Navigator>
