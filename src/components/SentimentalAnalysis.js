@@ -12,17 +12,17 @@ import {
 
 import axios from "axios";
 
-const SentimentalAnalysis = () => {
+const AI = () => {
   const [data, setData] = useState([]);
   const [text, setText] = useState("");
 
   const emoji = () => {
     if (data.label === "pos") {
-      return "   HAPPY :)";
+      return "   Positive :)";
     } else if (data.label === "neg") {
-      return "   SAD :(";
+      return "   Negative :(";
     } else if (data.label === "neu") {
-      return "   ANGRY !!";
+      return "   Neutral";
     } else {
       return " MOOD";
     }
@@ -90,9 +90,9 @@ const SentimentalAnalysis = () => {
                 data.label === "pos"
                   ? require("../images/happy.png")
                   : data.label === "neg"
-                  ? require("../images/Sad.png")
-                  : data.label === "neu"
                   ? require("../images/ANGRY.png")
+                  : data.label === "neu"
+                  ? require("../images/Sad.png")
                   : require("../images/ICON2.jpg")
               }
               style={{
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SentimentalAnalysis;
+export default AI;
